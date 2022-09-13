@@ -11,6 +11,7 @@ using std::string;
 
 vector<pair<long long, int>> groupPhoneNumbers(vector<long long> phoneNumbers);
 
+vector<pair<string, int>>sum(vector<pair<string, int>>&inputVec);
 
 vector<pair<string, int>> cryptoCurrencyAnalysis(string fileContents);
 

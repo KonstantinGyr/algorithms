@@ -19,24 +19,37 @@ int findMaxUnderBoundary(const vector<int>& inp, int topBoundary) {
 vector<int> findTopElements(const vector<int>& inp, int numberOfElements) {
     // Создадим массив для результата
     vector<int> res;
-    // Нам требуется знать предыдущее значение максимума,
-    // По-умолчанию мы положим туда максимальное значение для типа int
-    int previousMax = INT_MAX;
+    vector<int>current = inp;
 
-    // Выполним цикл столько раз, сколько максимумов нам нужно найти
     for (int i = 0; i < numberOfElements; i++) {
-        // Найдем текущий максимум
-        int currentMax = findMaxUnderBoundary(inp, previousMax);
-
-        // Обновим значение "предыдущего" максимума
-        previousMax = currentMax;
-
-        // Положим результат в выходной массив
+        int currentMax = INT_MIN;
+        int count = 0;
+        for(int i=0;i<current.size();i++){
+            if(current[i]>currentMax){
+                currentMax = current[i];
+                count = i;
+            }
+        }
         res.push_back(currentMax);
+        current.erase(current.begin()+count);
     }
     return res;
 }
 
 vector<int> findBottomElements(const vector<int>& inp, int elements) {
-    return vector<int>(elements, 0); // Please implement
+    vector<int>res;
+    vector<int>currentVec = inp;
+    for (int i = 0; i < elements; i++) {
+        int currentMin = INT_MAX;
+        int count = 0;
+        for(int i=0;i<currentVec.size();i++){
+            if(currentVec[i]<currentMin){
+                currentMin = currentVec[i];
+                count = i;
+            }
+        }
+        res.push_back(currentMin);
+        currentVec.erase(currentVec.begin()+count);
+    }
+    return res; // Please implement
 }
