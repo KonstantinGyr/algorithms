@@ -55,7 +55,6 @@ public:
     int findGoodIndex(string key) {
         int hash = hashFunction(key);
         int index = hash % size;
-
         for (int i = 0; i < size; i++) {
             int probingIndex = (index + i) % size;
             KV entry = entries[probingIndex];
@@ -67,18 +66,58 @@ public:
     }
 
     void deleteKey(string key) {
-        // please implement
+        for(int i = 0;i<size;i++){
+            KV entry = entries[i];
+            if(entry.first == key){
+                entry.first = "";
+                entry.second = "";
+                entries[i] = entry;
+                numberOfElements--;
+                break;
+            }
+        }
+        if(numberOfElements <= size/4){
+            resize(size/2);
+        }
     }
 
     vector<string> getAllKeys() {
-        return vector<string>(); // please implement
+        vector<string>allKeys;
+        for(int i = 0;i<size;++i){
+            KV entry = entries[i];
+            if(entry.first != "" ){
+                allKeys.push_back(entry.first);
+            }
+        }
+        return allKeys;
     }
 
     vector<string> getAllValues() {
-        return vector<string>(); // please implement
+        vector<string>allValues;
+        for(int i = 0;i<size;++i){
+            KV entry = entries[i];
+            if(entry.second != ""){
+                allValues.push_back(entry.second);
+            }
+        }
+        return allValues;
     }
-
 };
+
+void printMap(HashMap &h){
+    for(int i = 0;i<h.size;++i){
+        KV entry = h.entries[i];
+        cout <<entry.first<<" "<< h.get(entry.first) << endl;
+    }
+    cout << h.numberOfElements << " " << h.size << endl;
+}
+
+void printVector(vector<string>vec){
+    for(auto str:vec){
+        cout<<str<<" ";
+    }
+    cout<<endl;
+}
 
 int main(void) {
     HashMap h;
@@ -87,23 +126,26 @@ int main(void) {
     cout << h.get("Hellop") << endl;
     h.add("test", "best");
     cout << h.get("test") << endl;
+    printMap(h);
     for (char c = 'a'; c <= 'z'; ++c) {
         string s = " ";
         s[0] = c;
         h.add(s, s);
     }
-    for (char c = 'a'; c <= 'z'; ++c) {
-        string s = " ";
-        s[0] = c;
-        cout << h.get(s) << endl;
-    }
+    printMap(h);
     cout << h.get("Hello") << endl;
     h.deleteKey("Hello");
     cout << h.get("Hello") << endl;
     h.add("Hello", "something else");
     cout << h.get("Hello") << endl;
-    vector<string> keys = h.getAllKeys();
-    vector<string> values = h.getAllValues();
-    // Don't forget to print that and check that everything is as expected.
-    // Also add some other tests to make sure that your code is working
+    printVector(h.getAllKeys());
+    printVector(h.getAllValues());
+    h.deleteKey("d");
+    printMap(h);
+    for (char c = 'a'; c <= 't'; ++c) {
+        string s = " ";
+        s[0] = c;
+        h.deleteKey(s);
+    }
+    printMap(h);
 }

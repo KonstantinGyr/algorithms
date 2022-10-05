@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+
 using namespace std;
 
 class DynamicArray {
@@ -30,7 +31,15 @@ public:
     }
 
     void deleteElementAt(int index) {
-        // please implement
+        if(index>=0&&index<size){
+            for(int i = index;i < currentIndex;++i){
+                values[i] = values[i+1];
+            }
+            currentIndex--;
+        }
+        if(currentIndex<=size/4){
+            resize((size/2));
+        }
     }
 };
 
