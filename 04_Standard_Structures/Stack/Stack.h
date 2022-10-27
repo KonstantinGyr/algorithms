@@ -20,33 +20,78 @@ public:
     // This function is called when it's not enough memory to fit new elements.
     // It creates new long array and copies all the elements there.
     void reallocate() {
-        /* IMPLEMENT THIS */
+        if(getSize() == a.size()){
+            a.resize(getSize()*2);
+        }
+        else if( getSize() <= a.size()/4){
+            a.resize(a.size()/2);
+        }
     }
 
     // Adds element to the end of the stack
     void push_back(long x) {
-        /* IMPLEMENT THIS */
+        if(getSize()==a.size()){
+            reallocate();
+        }
+        a[size] = x;
+        size ++;
     }
 
     // Removes last element from the stack and returns its value
     long pop_back() {
-        /* IMPLEMENT THIS */
-        return 0;
+        long lastElem = a[size - 1];
+        a[size - 1] = 0;
+        size --;
+
+        if(getSize()*4 <= a.size() && a.size()>10){
+            reallocate();
+        }
+        return lastElem;
     }
 
     // Returns value of the last element in the stack
     long top() {
-        /* IMPLEMENT THIS */
-        return 0;
+        return a[size - 1];
     }
 
-    // Calculates the result of reversed polish notation. https://en.wikipedia.org/wiki/Reverse_Polish_notation
-    // This one is simplified. Every number and character are separated by exactly one space.
-    // Only + - * should be supported.
-    // Example: calcPolish("1 2 3 * -") should return -5 | because (1 - (2 * 3))
     static long calcPolish(const std::string& s) {
-        /* IMPLEMENT THIS */
-        return 0;
+         Stack stack;
+        bool sign = true;
+        std::string strBuffer ;
+        long result ;
+        int count = 0;
+        for(auto character:s){
+            long longBuffer ;
+            if(s.front() == '-' ) sign = false;
+            if(character >= '0' && character <= '9') strBuffer += character;
+            else if(character == ' ' ){
+                if(!strBuffer.empty()){
+                stack.push_back(std::stol(strBuffer));
+                strBuffer.clear();}
+            }
+            else if(character == '+' && stack.getSize() > 0){
+                longBuffer = stack.pop_back();
+                result = stack.pop_back() + longBuffer  ;
+                stack.push_back(result);
+            }
+            else if(character == '-' && stack.getSize() > 0){
+                longBuffer = stack.pop_back();
+                result = stack.pop_back() - longBuffer ;
+                stack.push_back(result);
+            }
+            else if(character == '*' && stack.getSize() > 0){
+                longBuffer = stack.pop_back();
+                result = stack.pop_back() * longBuffer ;
+                stack.push_back(result);
+            }
+            count++;
+            if(character >= '0' && character <= '9' && count == s.length()){
+                stack.push_back(std::stol(strBuffer));
+            }
+        }
+        result = stack.top();
+        if(!sign)result = -result;
+        return result;
     }
 };
 

@@ -1,5 +1,6 @@
 #include "Stack.h"
 #include <iostream>
+#include <string>
 #include <cassert>
 
 static void testPolish() {
@@ -14,7 +15,7 @@ static void testPolish() {
     for (int i = 0; i < 10000; ++i) {
         b.append(std::to_string(i) + " ");
     }
-    for (int i = 0; i < 10000; ++i) {
+    for (int i = 1; i < 10000; ++i) {
         b.append("+");
         if (i != 9999) {
             b.append(" ");
@@ -35,4 +36,5 @@ static void testPolish() {
 int main() {
     testPolish();
     std::cout << "All tests for List passed successfully! Congrats";
+    return 0;
 }

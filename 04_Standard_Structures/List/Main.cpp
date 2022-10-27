@@ -93,6 +93,8 @@ static void testGetAndInsert() {
     }
     std::vector<int> ans{ 1, 2, 3, 100, 100, 100, 100, 100, 4, 5 };
     assert(l.toArray() == ans);
+    l.removeAfter(n);
+    l.removeAfter(l.getAt(6));
     List l2;
     for (int i = 0; i < 5; ++i) {
         l2.push_front(0);
@@ -100,6 +102,7 @@ static void testGetAndInsert() {
     }
     std::vector<int> ans2{ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 };
     assert(l2.toArray() == ans2);
+    l2.removeAfter(l2.getAt(8));
 }
 
 
