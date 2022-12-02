@@ -46,7 +46,6 @@ public:
             }
             n = n->next;
         }
-        print("This without every second element" );
         return secList;
     }
 

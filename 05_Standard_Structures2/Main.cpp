@@ -31,6 +31,7 @@ static void testPushAndPop() {
     l.push_back(4);
     l.push_back(5);
     l.push_back(6);
+    l.print();
     assert(l.toArray() == (std::vector<int>{3, 2, 1, 4, 5, 6}));
     assert(6 == l.pop_back());
     assert(5 == l.pop_back());

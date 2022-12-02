@@ -21,11 +21,34 @@ public:
     Node* end{ nullptr };
 
     // This function should add new element with value x to the front of the list
+
     void push_front(int x) {
+        Node* n = new Node(x);
+        if (begin == nullptr) {
+            begin = n;
+            end = n;
+        }
+        else
+        {
+            n->next = begin;
+            begin->prev = n;
+            begin = n;        
+        }
     }
 
     // This function should add new element with value x to the end of the list
     void push_back(int x) {
+        Node* n = new Node(x);
+        if (end == nullptr) {
+            begin = n;
+            end = n;
+        }
+        else {
+            n->next = nullptr;
+            n->prev = end;
+            end->next = n;
+            end = n;
+        }
     }
 
     // This function could be useful for debug purposes
@@ -40,35 +63,90 @@ public:
 
     // This function should return the number of element in the list
     int getSize() {
-        return 0;
+        int count = 0;       
+        if (begin == nullptr)return 0;
+        Node* n = begin;
+        while (n != nullptr) {
+            count++;
+            n = n->next;
+        }
+        return count;
     }
 
     // This function should return an array with values the same as in list
     std::vector<int> toArray() {
-        return {};
+        std::vector<int>outVec;
+        Node* n = begin;
+        while (n != nullptr) {
+            outVec.emplace_back(n->x);
+            n = n->next;
+        }
+        return outVec;
     }
 
 
     // This function should remove the element x from the list
     void remove(Node* x) {
+        Node* prev = x->prev;
+        Node* next = x->next;
+        if (prev != nullptr) {
+            prev->next = next;
+        }
+        if (next != nullptr) {
+           next->prev  = prev;
+        }
+        x->next = nullptr;
+        x->prev = nullptr;
+        if (begin == x) {
+            begin = next;
+        }
+        if (end == x) {
+            end = prev;
+        }
     }
 
     // This function should remove first element in the list and return its value
     int pop_front() {
-        return 0;
+        Node* n = begin;
+        remove(begin);
+        return n->x;
     }
 
     // This function should remove last element in the list and return its value
     int pop_back() {
-        return 0;
+        Node* n = end;
+        remove(end);
+        return n->x;
     }
 
     // This function should insert element with the value val after the element x
     void insertAfter(Node* x, int val) {
+        Node* n = new Node(val);
+        if (x == end) {
+            n->next = nullptr;
+            end = n;
+        }
+        else
+        {
+            Node* next = x->next;
+            
+            n->next = next;
+            next->prev = n;
+        }
+        x->next = n;
+        n->prev = x;
+                
     }
 
     // This function should return element at index
     Node* getAt(int index) {
+        Node* n = begin;
+        int count = 0;
+        while (n != nullptr){
+            if (count == index)return n;
+            n = n->next;
+            count++;
+        }
         return nullptr;
     }
 
