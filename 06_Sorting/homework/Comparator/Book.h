@@ -44,7 +44,9 @@ public:
 
     bool operator == (const Book& o)
     {
-        return this->getYear() == o.getYear();
+        if(this->getYear() == o.getYear() && this->getTitle() == o.getTitle() && this->getAuthor() == o.getAuthor())
+        return true;
+        else return false;
     }
 
     bool operator != (const Book& o)

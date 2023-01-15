@@ -2,17 +2,16 @@
 #include <vector>
 
 static void countingSort(std::vector<int> &arr, int maxValue) {
-  std::vector<int> numCounts(maxValue + 1, 0);
-  for (int num : arr) {
-    numCounts[num]++;
+  std::vector<int>countNum(maxValue,0);
+  for(auto elem : arr){
+      countNum[elem]++;
   }
-  int currentSortedIndex = 0;
-  for (int n = 0; n < numCounts.size(); n++) {
-    int count = numCounts[n];
-    for (int k = 0; k < count; k++) {
-      arr[currentSortedIndex] = n;
-      currentSortedIndex++;
-    }
+  int ptr = 0;
+  for(int i= 0;i < countNum.size();i++){
+      for(int j = 0;j < countNum[i];j++) {
+          arr[ptr] = i;
+          ptr++;
+      }
   }
 }
 

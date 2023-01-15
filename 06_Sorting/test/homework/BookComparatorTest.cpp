@@ -3,6 +3,26 @@
 #include <cassert>
 #include <vector>
 #include <algorithm>
+#include <iostream>
+
+const std::vector<Book> algoBooks{
+
+        {"Jane Eyre", "Charlotte Bronte", 1989, 350 },
+
+        {"Gulliver’s Travels", "Jonathan Swift", 1967, 698 },
+
+        {"Romeo and Juliet", "William Shakespeare", 1968, 1035 },
+
+        {"The Adventures of Sherlock Holmes ", "Arthur Conan Doyle", 2012, 840 },
+
+        {"Robinson Crusoe", "Daniel Defoe", 1889, 731 },
+
+        {"Frankenstein", "Mary Shelley", 1947, 703},
+
+        {"Treasure Island", "Robert Stevenson", 1856, 780 }
+
+};
+
 
 void compareBooksByPriceTest() {
   std::cout << "Sort books by price" << std::endl;
@@ -62,6 +82,6 @@ int main() {
     compareBooksByPriceTest();
     compareBooksByAuthorAndYearAndPriceTest();
     bookCompareToTest();
-    std::cout << "All tests for DLList passed successfully! Congrats";
+    std::cout << "All tests for BookComparator passed successfully! Congrats";
     return 0;
 }

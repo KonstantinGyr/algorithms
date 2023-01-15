@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <cassert>
 #include <time.h>
+#include <string>
+#include <iostream>
 
 class Arr : public SuperArray {
 private:
@@ -160,6 +162,6 @@ int main() {
     selectionSortTest();
     insertionSortTest();
     countingSortTest();
-  std::cout << "All tests for DLList passed successfully! Congrats";
+  std::cout << "All tests for Sorted passed successfully! Congrats";
   return 0;
 }
