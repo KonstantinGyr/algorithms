@@ -1,4 +1,4 @@
-#incldue "BruteForceRecursion.h"
+#include "BruteForceRecursion.h"
 #include <iostream>
 #include <set>
 #include <cassert>
@@ -47,7 +47,7 @@ void possibleMessagesTest() {
             "cew", "cex", "cey", "cez",
             "cfw", "cfx", "cfy", "cfz" };
 
-    std::vector<std::string> keys{"", "2", "43", "230"};
+    std::vector<std::string> keys{"", "2", "43", "239"};
     std::vector<std::vector<std::string>> vals = { {}, l1, l2, l3 };
 
     for (size_t i = 0; i < keys.size(); ++i) {
@@ -62,6 +62,6 @@ int main() {
   orderOfReleaseFeaturesTest();
   checkPowersOfThreeTest();
   possibleMessagesTest();
-  std::cout << "All tests for DLList passed successfully! Congrats";
+  std::cout << "All tests for BruteForceRecursion passed successfully! Congrats";
   return 0;
 }

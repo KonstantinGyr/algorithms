@@ -73,6 +73,6 @@ void merge3sortedTest() {
 int main() {
   merge2sortedTest();
   merge3sortedTest();
-  std::cout << "All tests for DLList passed successfully! Congrats";
+  std::cout << "All tests for ListNode passed successfully! Congrats";
   return 0;
 }

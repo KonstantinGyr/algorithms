@@ -23,8 +23,6 @@ static int findIterationFibonacci(int n)
     return f[n];
 }
 
-
-
 void findFibonacciTest() {
     std::cout << "Find number of Fibonacci" << std::endl;
     for (auto &n : { 1, 2, 7, 12 }) {
@@ -36,6 +34,6 @@ void findFibonacciTest() {
 
 int main() {
   findFibonacciTest();
-  std::cout << "All tests for DLList passed successfully! Congrats";
+  std::cout << "All tests for Fibonacci passed successfully! Congrats";
   return 0;
 }
